@@ -3,122 +3,611 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Datenschutzerklärung – Ing. Erik Bindar</title>
+<title>Ing. Erik Bindar – Versicherungsmakler & Finanzberater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #F7F5F1;
-    color: #1C1C1A;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
-    padding: 0 1.25rem;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --bg: #F8F9FC;
+    --bg-card: #FFFFFF;
+    --navy: #0A1628;
+    --navy-mid: #122040;
+    --blue: #1B4F8A;
+    --accent: #2563EB;
+    --accent-light: #EFF6FF;
+    --accent-mid: #DBEAFE;
+    --text: #0F172A;
+    --text-soft: #475569;
+    --text-muted: #94A3B8;
+    --rule: #E2E8F0;
+    --green: #16A34A;
+    --green-bg: #F0FDF4;
+    --red: #DC2626;
+    --red-bg: #FEF2F2;
   }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 4rem 0 5rem; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8a8a84; margin-bottom: 0.75rem; }
-  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: #1C1C1A; }
-  .meta { font-size: 13px; color: #8a8a84; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #E2DED8; }
-  h2 { font-size: 1rem; font-weight: 600; color: #1C1C1A; margin: 2.5rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 0.5px solid #E2DED8; }
-  p { color: #4a4a46; margin-bottom: 0.85rem; font-size: 15px; }
-  ul { margin: 0.5rem 0 0.85rem 1.25rem; color: #4a4a46; font-size: 15px; }
-  ul li { margin-bottom: 0.3rem; }
-  .card { background: #fff; border: 0.5px solid #E2DED8; border-radius: 10px; padding: 1.1rem 1.35rem; margin-top: 0.5rem; font-size: 15px; color: #4a4a46; line-height: 1.7; }
-  .card strong { color: #1C1C1A; font-weight: 600; }
-  a { color: #1B4F8A; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid #E2DED8; font-size: 12px; color: #8a8a84; text-align: center; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+ 
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+ 
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 20%, rgba(37,99,235,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 90%, rgba(27,79,138,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+ 
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+ 
+  .hero-text { display: flex; flex-direction: column; }
+ 
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+ 
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+ 
+  h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+  }
+ 
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+ 
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-soft);
+    max-width: 500px;
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+ 
+  /* VIDEO */
+  .video-wrap {
+    width: 280px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--navy-mid);
+    aspect-ratio: 9/16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(10,22,40,0.12);
+  }
+ 
+  .video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #94A3B8;
+  }
+ 
+  .play-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.15);
+    border: 1.5px solid rgba(37,99,235,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  .play-btn svg { fill: #60A5FA; margin-left: 4px; }
+ 
+  /* VORTEILE */
+  .vorteile-wrap {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+  }
+ 
+  .vorteile {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+ 
+  .vorteil {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+ 
+  .vorteil:hover {
+    box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+    border-color: var(--accent-mid);
+  }
+ 
+  .vorteil-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.85rem;
+  }
+ 
+  .vorteil-icon svg { stroke: var(--accent); }
+ 
+  .vorteil h3 {
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--navy);
+  }
+ 
+  .vorteil p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+ 
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--rule);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  /* SECTION */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+ 
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+ 
+  h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 2.5rem;
+  }
+ 
+  /* ZAHLEN */
+  .zahlen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+ 
+  .zahl {
+    padding: 1.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+ 
+  .zahl:hover {
+    box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+    border-color: var(--accent-mid);
+  }
+ 
+  .zahl-num {
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+ 
+  .zahl-num span { color: var(--accent); }
+ 
+  .zahl-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+ 
+  /* VERGLEICH */
+  .vergleich {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+ 
+  .vergleich-card {
+    border-radius: 12px;
+    padding: 1.6rem;
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+  }
+ 
+  .vergleich-card.mit {
+    background: var(--accent-light);
+    border-color: var(--accent-mid);
+  }
+ 
+  .vergleich-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--text-muted);
+  }
+ 
+  .vergleich-card.mit h3 {
+    color: var(--navy);
+    border-bottom-color: var(--accent-mid);
+  }
+ 
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 0.8rem;
+    font-size: 13px;
+    color: var(--text-soft);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+ 
+  .check-item:last-child { margin-bottom: 0; }
+ 
+  .check-icon {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+ 
+  .ohne .check-icon { background: var(--red-bg); }
+  .mit .check-icon { background: var(--green-bg); }
+  .mit .check-item { color: var(--navy); }
+ 
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+ 
+  .faq-item {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+  }
+ 
+  .faq-item:has(.faq-q.open) {
+    border-color: var(--accent-mid);
+  }
+ 
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    color: var(--navy);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.15s;
+  }
+ 
+  .faq-q:hover { background: var(--bg); }
+  .faq-q.open { color: var(--accent); background: var(--accent-light); }
+ 
+  .faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s;
+    color: var(--accent);
+  }
+ 
+  .faq-q.open .faq-icon { transform: rotate(45deg); }
+ 
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.2s;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+ 
+  .faq-a.open {
+    max-height: 300px;
+    padding: 0 1.25rem 1.1rem;
+  }
+ 
+  /* FOOTER */
+  footer {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+ 
+  .footer-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+ 
+  .footer-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+ 
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+ 
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  .footer-links a:hover { color: var(--accent); }
+ 
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .video-wrap { width: 100%; max-width: 320px; margin: 0 auto; }
+    .vorteile { grid-template-columns: 1fr; }
+    .zahlen-grid { grid-template-columns: 1fr 1fr; }
+    .vergleich { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
  
-  <p class="eyebrow">Rechtliches</p>
-  <h1>Datenschutzerklärung</h1>
-  <p class="meta">Stand: Mai 2026 &nbsp;·&nbsp; Gültig für alle Tätigkeiten von Ing. Erik Bindar</p>
- 
-  <h2>1. Geltungsbereich</h2>
-  <p>Diese Datenschutzerklärung erläutert, wie Ing. Erik Bindar personenbezogene Daten von Nutzern erhebt, verwendet, speichert und schützt, die auf die Website und die damit verbundenen Dienste zugreifen oder diese nutzen. Durch die Nutzung der Website bestätigen Sie, dass Sie dieses Dokument gelesen und verstanden haben.</p>
- 
-  <h2>2. Verantwortlicher</h2>
-  <p>Diese Datenschutzerklärung gilt für alle unternehmerischen Tätigkeiten von Ing. Erik Bindar, einschließlich der Tätigkeit als Versicherungsmakler, Finanzberater sowie aller damit verbundenen Marketingmaßnahmen.</p>
-  <div class="card">
-    <strong>Ing. Erik Bindar</strong><br>
-    Versicherungsagent &amp; Finanzberater<br>
-    Waagner-Biro-Straße 124/28, 8020 Graz, Österreich<br>
-    E-Mail: <a href="mailto:erik_bindar@yahoo.de">erik_bindar@yahoo.de</a><br>
-    GISA: 36869695
-	Mitglied der: Wirtschaftskammer Steiermark (WKS)
-    Berufsrecht: Gewerbeordnung 1994 (GewO) - abrufbar unter www.ris.bka.gv.at
-	
-	<b>Aufsichtsbehörde</b>
-	Wirtschaftskammer Steiermark
-    Körblergasse 111–113, 8010 Graz
-    Web: www.wkstmk.at
-  </div>
- 
-  <h2>3. Erfasste personenbezogene Daten</h2>
-  <p>Im Rahmen von Meta-Werbeanzeigen (Facebook/Instagram) und dem dazugehörigen Instant-Formular erheben wir folgende personenbezogene Daten:</p>
-  <ul>
-    <li>Vorname</li>
-    <li>Telefonnummer</li>
-    <li>Altersgruppe</li>
-    <li>Angaben zur aktuellen finanziellen Situation (Selbstauskunft)</li>
-  </ul>
-  <p>Diese Daten werden ausschließlich zum Zweck der Kontaktaufnahme und der Vereinbarung eines kostenlosen Erstgesprächs erhoben.</p>
- 
-  <h2>4. Rechtsgrundlage der Verarbeitung</h2>
-  <p>Die Verarbeitung Ihrer Daten erfolgt auf Basis Ihrer ausdrücklichen Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die Sie durch das Ausfüllen und Absenden des Formulars erteilen. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie uns per E-Mail kontaktieren.</p>
- 
-  <h2>5. Verwendung Ihrer Daten</h2>
-  <p>Wir verarbeiten personenbezogene Daten zu folgenden Zwecken:</p>
-  <ul>
-    <li>Sie persönlich telefonisch zu kontaktieren</li>
-    <li>Ein kostenloses Erstgespräch zu vereinbaren</li>
-    <li>Ihnen bedarfsgerechte Informationen zu Finanz- und Versicherungsthemen bereitzustellen</li>
-  </ul>
-  <p>Ihre Daten werden nicht an Dritte weitergegeben, verkauft oder für Werbezwecke außerhalb der genannten Zwecke verwendet.</p>
- 
-  <h2>6. Datenübermittlung über Meta (Facebook/Instagram)</h2>
-  <p>Die Erhebung Ihrer Daten erfolgt über das Instant-Formular der Plattform Meta Platforms Ireland Ltd. Meta verarbeitet Ihre Daten gemäß den eigenen Datenschutzrichtlinien, auf die wir keinen Einfluss haben. Weitere Informationen finden Sie in der <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Datenschutzrichtlinie von Meta</a>.</p>
- 
-  <h2>7. Speicherdauer</h2>
-  <p>Ihre personenbezogenen Daten werden nur so lange gespeichert, wie es für den genannten Zweck erforderlich ist — in der Regel bis zum Abschluss des Erstgesprächs oder bis Sie Ihren Widerruf erklären, längstens jedoch 12 Monate nach Erhebung.</p>
- 
-  <h2>8. Ihre Rechte</h2>
-  <p>Gemäß DSGVO haben Sie folgende Rechte:</p>
-  <ul>
-    <li><strong>Auskunft</strong> – Sie können jederzeit Auskunft über die bei uns gespeicherten Daten verlangen (Art. 15 DSGVO).</li>
-    <li><strong>Berichtigung</strong> – Sie können unrichtige Daten korrigieren lassen (Art. 16 DSGVO).</li>
-    <li><strong>Löschung</strong> – Sie können die Löschung Ihrer Daten verlangen (Art. 17 DSGVO).</li>
-    <li><strong>Einschränkung</strong> – Sie können die Verarbeitung einschränken lassen (Art. 18 DSGVO).</li>
-    <li><strong>Widerspruch</strong> – Sie können der Verarbeitung widersprechen (Art. 21 DSGVO).</li>
-    <li><strong>Datenübertragbarkeit</strong> – Sie können Ihre Daten in einem strukturierten Format erhalten (Art. 20 DSGVO).</li>
-    <li><strong>Widerruf der Einwilligung</strong> – Sie können Ihre Einwilligung jederzeit widerrufen (Art. 7 Abs. 3 DSGVO).</li>
-  </ul>
-  <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an: <a href="mailto:erik_bindar@yahoo.de">erik_bindar@yahoo.de</a></p>
- 
-  <h2>9. Beschwerderecht</h2>
-  <p>Sie haben das Recht, bei der österreichischen Datenschutzbehörde Beschwerde einzulegen:</p>
-  <div class="card">
-    <strong>Österreichische Datenschutzbehörde</strong><br>
-    Barichgasse 40–42, 1030 Wien<br>
-    E-Mail: <a href="mailto:dsb@dsb.gv.at">dsb@dsb.gv.at</a><br>
-    Web: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a>
-  </div>
- 
-  <h2>10. Änderungen an diesem Dokument</h2>
-  <p>Wir behalten uns das Recht vor, dieses Dokument jederzeit zu aktualisieren. Änderungen werden mit der Veröffentlichung auf der Website wirksam.</p>
- 
-  <h2>11. Kontakt</h2>
-  <div class="card">
-    E-Mail: <a href="mailto:erik_bindar@yahoo.de">erik_bindar@yahoo.de</a><br>
-    Adresse: Waagner-Biro-Straße 124/28, 8020 Graz
-  </div>
- 
-  <footer>
-    &copy; 2026 Ing. Erik Bindar &nbsp;·&nbsp; Waagner-Biro-Straße 124/28, 8020 Graz
-  </footer>
- 
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Finanzberatung & Versicherung · Steiermark</p>
+      <h1>Dein Geld sollte härter<br>arbeiten als <em>du.</em></h1>
+      <p class="hero-sub">Ich helfe dir, eine Finanzstruktur aufzubauen die zu deinem Leben passt — klar, unabhängig, ohne Umwege.</p>
+    </div>
+    <div class="video-wrap">
+		<video controls width="100%" playsinline poster="vorschaubild.jpg">
+			<source src="vorstellung.mp4" type="video/mp4">
+			Ihr Browser unterstützt das Video nicht.
+		</video>
 </div>
+  </div>
+ 
+  <div class="vorteile-wrap">
+    <div class="vorteile">
+      <div class="vorteil">
+        <div class="vorteil-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Unabhängige Beratung</h3>
+        <p>Kein Bankprodukt, kein Konzerninteresse — ich vergleiche den Markt und empfehle was für dich passt.</p>
+      </div>
+      <div class="vorteil">
+        <div class="vorteil-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Persönlich & direkt</h3>
+        <p>Du sprichst immer mit mir. Kein Callcenter, kein Weitervermitteln, kein Automat.</p>
+      </div>
+      <div class="vorteil">
+        <div class="vorteil-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <h3>Kostenlos & unverbindlich</h3>
+        <p>Das Erstgespräch kostet dich nichts — außer 30 Minuten Zeit.</p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<!-- VERGLEICH -->
+<section>
+  <p class="section-label">Die Vorteile bei uns</p>
+  <h2>Warum Sie Ihre Finanzplanung in<br>professionelle Hände legen sollten</h2>
+  <div class="vergleich">
+    <div class="vergleich-card ohne">
+      <h3>Ohne Berater</h3>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"/></svg></div>Kein Überblick über Lücken in der Absicherung</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"/></svg></div>Geld liegt auf Konten die nichts tun</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"/></svg></div>Entscheidungen werden jahrelang aufgeschoben</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"/></svg></div>Produkte blind abgeschlossen ohne Marktvergleich</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round"/></svg></div>Kosten entstehen — auch durch Nichtstun</div>
+    </div>
+    <div class="vergleich-card mit">
+      <h3>Mit Erik Bindar</h3>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Klare Analyse deiner Situation ab dem ersten Gespräch</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Strukturierter Plan — was tun, in welcher Reihenfolge</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Unabhängiger Marktvergleich — nicht das Produkt mit der höchsten Provision</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Persönliche Begleitung — kein Callcenter, kein Automat</div>
+      <div class="check-item"><div class="check-icon"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ergebnisse die messbar sind</div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ZAHLEN -->
+<section>
+  <p class="section-label">Zahlen, die für sich sprechen</p>
+  <h2>Unsere Ergebnisse in Österreich</h2>
+  <div class="zahlen-grid">
+    <div class="zahl">
+      <div class="zahl-num">94<span>%</span></div>
+      <div class="zahl-label">Kundenzufriedenheit</div>
+    </div>
+    <div class="zahl">
+      <div class="zahl-num">200<span>+</span></div>
+      <div class="zahl-label">Betreute Klienten in der Steiermark</div>
+    </div>
+    <div class="zahl">
+      <div class="zahl-num">Ø 5<span> Tage</span></div>
+      <div class="zahl-label">Bis zur fertigen Finanzstrategie</div>
+    </div>
+    <div class="zahl">
+      <div class="zahl-num">100<span>%</span></div>
+      <div class="zahl-label">Kostenlose Erstberatung — ohne Kaufzwang</div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- FAQ -->
+<section>
+  <p class="section-label">Häufige Fragen</p>
+  <h2>Du hast Fragen.<br>Hier sind die Antworten.</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Was passiert nach dem Ausfüllen des Formulars?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Ich melde mich persönlich innerhalb von 24 Stunden bei dir — per Telefon. Kein automatisiertes System, kein Callcenter. Du sprichst direkt mit mir.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Kostet mich das Erstgespräch etwas?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Nein. Das Erstgespräch ist vollständig kostenlos und unverbindlich. Wir schauen uns gemeinsam deine Situation an — ohne Druck, ohne versteckte Kosten.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Ich verdiene gut — brauche ich wirklich einen Berater?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Gutes Einkommen ist der Anfang, nicht das Ziel. Die meisten Menschen mit gutem Gehalt verlieren still und leise Geld — weil es auf Konten liegt die nichts tun. Ein Berater sorgt dafür, dass dein Geld genauso hart arbeitet wie du.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Was unterscheidet dich von meiner Hausbank?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Deine Hausbank verkauft dir ihre eigenen Produkte. Ich bin unabhängiger Makler — ich vergleiche den Markt und empfehle was für dich passt, nicht was die höchste Provision bringt.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Bin ich zu jung / zu alt um jetzt anzufangen?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Mit 25 hast du Zeit — aber jedes Jahr das du wartest kostet dich Zinseszins den du nie zurückbekommst. Mit 50 hast du weniger Zeit — aber immer noch genug um sinnvoll zu handeln. Der beste Zeitpunkt war gestern. Der zweitbeste ist heute.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Welche Produkte empfiehlst du — und verdienst du daran?<div class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></button>
+      <div class="faq-a">Ja, ich verdiene eine Provision wenn ein Produkt vermittelt wird — das ist gesetzlich geregelt und transparent. Mein Geschäftsmodell funktioniert aber nur langfristig wenn meine Klienten zufrieden sind. Deshalb empfehle ich nur was ich selbst für sinnvoll halte.</div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div>
+    <div class="footer-name">© 2026 Copyright. Alle Rechte vorbehalten.</div>
+    <div class="footer-sub">Versicherungsmakler & Finanzberater · Graz</div>
+  </div>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+ 
+<script>
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+}
+</script>
 </body>
 </html>
